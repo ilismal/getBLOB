@@ -29,10 +29,12 @@ with open (fichero, 'r') as listaIDs:
         with conexion:
             cur = conexion.cursor()
             cur2 = conexion.cursor()
-            cur.execute("SELECT datos FROM somewhere WHERE id=" + id)
-            cur2.execute("SELECT nombre FROM somewhereelse WHERE id=" + id)
+            cur.execute("SELECT something FROM somewhere WHERE id=" + id)
+            cur2.execute("SELECT somethingelse FROM somewhereelse WHERE id=" + id)
             nombre = referencia + '_' + id + '_' + str(cur2.fetchone()[0])
-            progreso = '(' + str(n) + '/' + str(total) + ') Obteniendo ' + nombre
+            cuadrados = round(n/float(total) * 30)
+            rayas = 30 - round(n/float(total) * 30)
+            progreso = '(' + str(n) + '/' + str(total) + ') [' + '#' * int(cuadrados) + '-' * int(rayas) + '] Obteniendo ' + nombre
             sys.stdout.write('%s\r' % progreso)
             data = cur.fetchone()[0]
             copiaDatos(data, nombre)
