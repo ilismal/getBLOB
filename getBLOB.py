@@ -33,7 +33,7 @@ with open (fichero, 'r') as listaIDs:
             cur2.execute("SELECT somethingelse FROM somewhereelse WHERE id=" + id)
             nombre = referencia + '_' + id + '_' + str(cur2.fetchone()[0])
             cuadrados = round(n/float(total) * 50)
-            rayas = 50 - round(n/float(total) * 50)
+            rayas = 50 - cuadrados
             progreso = '(' + str(n) + '/' + str(total) + ') [' + '#' * int(cuadrados) + '-' * int(rayas) + '] Obteniendo ' + nombre
             sys.stdout.write('%s\r' % progreso)
             data = cur.fetchone()[0]
